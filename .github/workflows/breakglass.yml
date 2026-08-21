@@ -1,0 +1,14 @@
+name: Breakglass
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions: {}
+
+jobs:
+  merge:
+    if: github.event.issue.pull_request && startsWith(github.event.comment.body, '/breakglass')
+    uses: kernel/infra/.github/workflows/breakglass-grant.yml@hypeship/breakglass-merge-path
+    secrets: inherit
+
